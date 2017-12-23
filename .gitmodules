@@ -1,0 +1,3 @@
+[submodule "django-progressive-web-app"]
+	path = django-progressive-web-app
+	url = git@github.com:devkral/django-progressive-web-app.git
