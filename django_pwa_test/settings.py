@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django-progressive-web-app.pwa'
+    'pwa',
+    'pwa_batteries',
+    'pwa_1',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+PWA_SERVICE_WORKER_PATH="pwa_batteries/serviceworker.js"
 
 ROOT_URLCONF = 'django_pwa_test.urls'
 
