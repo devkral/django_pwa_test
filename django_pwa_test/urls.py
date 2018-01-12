@@ -23,5 +23,5 @@ import pwa
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pwa.urls')),
-    path('', TemplateView.as_view(template_name="home.html")),
+    path('', include('pwa_1.urls')),
 ]

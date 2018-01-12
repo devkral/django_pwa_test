@@ -15,7 +15,6 @@ python_version = '3'
 django = ">=2"
 django-progressive-web-app = "*"
 django-pwa-batteries = {git = "https://github.com/devkral/django-pwa-batteries.git"}
-"4fe2573" = {path = "./../django-pwa-batteries"}
 
 
 [dev-packages]
