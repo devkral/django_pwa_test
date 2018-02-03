@@ -23,5 +23,6 @@ import pwa
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pwa.urls')),
+    path('', include('pwa_batteries.urls')),
     path('', include('pwa_1.urls')),
 ]

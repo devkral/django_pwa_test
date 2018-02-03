@@ -13,9 +13,11 @@ python_version = '3'
 [packages]
 
 django = ">=2"
-django-progressive-web-app = "*"
+django-progressive-web-app = {git = "https://github.com/devkral/django-progressive-web-app.git", branch="django2_views"}
 django-pwa-batteries = {git = "https://github.com/devkral/django-pwa-batteries.git"}
-
+django-extensions = "*"
+werkzeug = "*"
+pyopenssl = "*"
 
 [dev-packages]
 
