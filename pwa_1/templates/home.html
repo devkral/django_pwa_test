@@ -7,8 +7,25 @@
     <title>test pwa</title>
     {% progressive_web_app_meta %}
     <script src='{% url "pwa_batteries_helper" %}'></script>
+    <script src='{% static "react/babel.min.js" %}'></script>
+    <script src='{% static "react/react.development.js" %}'></script>
+    <script src='{% static "react/react-dom.development.js" %}'></script>
+    <script type="text/jsx" src='{% static "pwa_1/react.jsx" %}'></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'w3css/w3.css' %}" />
   </head>
   <body>
-    pwa test
+    <div class="w3-row">
+      <div id="sidebar" class="w3-col s3 m2 l1">
+
+      </div>
+      <div id="maincontent" class="w3-col s9 m10 l11">
+      </div>
+    </div>
+
+    <script>
+      var onload=function(){
+
+      }
+    </script>
   </body>
 </html>
