@@ -1,18 +1,30 @@
 //import React from 'react';
 
 class BlogContent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: this.props.title,
+      content: this.props.content,
+    };
+  }
+  update_s(title, content) {
+    return this.setState({
+      title: title,
+      content: content,
+    })
+  }
   render() {
     return (
       <div>
-        <h1>{this.props.title}</h1>
-        <div>{this.props.content}</div>
+        <h1>{this.state.title}</h1>
+        <div>{this.state.content}</div>
       </div>
     );
   }
 }
 
-const maincontent=<BlogContent title="Welcome" content="test blog" />;
-ReactDOM.render(maincontent, document.getElementById('maincontent'));
+var maincontent = ReactDOM.render(<BlogContent title="" content="" />, document.getElementById('maincontent'));
 
 class BlogItem extends React.Component {
   constructor(props) {
@@ -28,17 +40,16 @@ class BlogItem extends React.Component {
       return "";
     }
   }
-
-  clickme() {
-    maincontent.props = {
-      title: this.props.title,
-      content: this.props.content,
-    }
-  }
   render() {
+    var title = this.props.title;
+    var content = this.props.content;
+    var update_content = function(event){
+      event.preventDefault()
+      maincontent.update_s(title, content);
+    }
     return (
       <li>
-        <a href="#" onClick={this.clickme()}>{this.props.title}</a>
+        <a href="" onClick={update_content}>{title}</a>
       </li>
     );
   }
@@ -48,16 +59,27 @@ class BlogSidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: this.props.clicked
+      items: []
     };
+    this.update_items();
+    if (this.state.items.length > 0){
+      var item = this.state.items[0]
+      maincontent.update_s(item[0], item[1]);
+    }
   }
+
+  _update_items() {
+
+  }
+
+  update_items() {
+
+  }
+
   items() {
-    return [[1, "foo", "faa"], [2, "foo2","ullaiia"], [3, "geaafa", "ksskk2343"]].map(function(curval) {
-      var key = curval[0];
-      var title = curval[1];
-      var content = curval[2];
-      console.log(key + " " + title + " " + content);
-      return (<BlogItem key={key} title={title} content={content} clicked={false} />);
+    return this.state.items.map(function(curval) {
+      return (<BlogItem key={curval.id} title={curval.title} \
+              content={curval.content} author={curval.author} />);
     });
   }
   render() {
@@ -67,8 +89,7 @@ class BlogSidebar extends React.Component {
   }
 }
 
-const sidebar=<BlogSidebar />
-ReactDOM.render(sidebar, document.getElementById('sidebar'));
+var itemlist = ReactDOM.render(<BlogSidebar />, document.getElementById('sidebar'));
 
 
 // export default BlogContent;
