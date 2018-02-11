@@ -61,7 +61,7 @@ class BlogSidebar extends React.Component {
   }
 
   fetch_items() {
-    return pwa.fetch({"pwa_1.BlogPost": {}}, "blogposts", true)
+    return pwa.fetch([{"pwa_1.BlogPost": {}}], "blogposts", true)
     /**.then(funcion(response){
       return response.json().then(function (data) {
         this.state.items = data[0];
