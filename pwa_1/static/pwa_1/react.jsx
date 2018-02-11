@@ -4,14 +4,18 @@ class BlogContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: this.props.title,
-      content: this.props.content,
+      id: -1,
+      author: "",
+      title: "",
+      content: "",
     };
   }
-  update_s(title, content) {
+  update_s(item) {
     return this.setState({
-      title: title,
-      content: content,
+      id: item.id,
+      author: item.author,
+      title: item.title,
+      content: item.content,
     })
   }
   render() {
@@ -19,38 +23,24 @@ class BlogContent extends React.Component {
       <div>
         <h1>{this.state.title}</h1>
         <div>{this.state.content}</div>
+        <div>by: {this.state.author}</div>
       </div>
     );
   }
 }
-
-var maincontent = ReactDOM.render(<BlogContent title="" content="" />, document.getElementById('maincontent'));
+var maincontent = ReactDOM.render(<BlogContent />, document.getElementById('maincontent'));
 
 class BlogItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clicked: this.props.clicked
-    };
-  }
-  disabled() {
-    if (this.state.clicked){
-      return "disabled=disabled";
-    } else {
-      return "";
-    }
-  }
   render() {
-    var title = this.props.title;
-    var content = this.props.content;
+    var item = this.props.item;
+    var sidebar=this.props.sidebar;
     var update_content = function(event){
       event.preventDefault()
-      maincontent.update_s(title, content);
+      sidebar.setState({selected: item.id});
+      maincontent.update_s(item);
     }
     return (
-      <li>
-        <a href="" onClick={update_content}>{title}</a>
-      </li>
+      <a href="" onClick={update_content}>{item.title}</a>
     );
   }
 }
@@ -59,32 +49,36 @@ class BlogSidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      selected: -1
     };
-    this.update_items();
+    Promise.resolve(this.fetch_items());
     if (this.state.items.length > 0){
       var item = this.state.items[0]
-      maincontent.update_s(item[0], item[1]);
+      this.sidebar.setState({selected: item.id});
+      maincontent.update_s(item);
     }
   }
 
-  _update_items() {
-
-  }
-
-  update_items() {
-
+  fetch_items() {
+    return pwa.fetch({"pwa_1.BlogPost": {}}, "blogposts", true)
+    /**.then(funcion(response){
+      return response.json().then(function (data) {
+        this.state.items = data[0];
+      }, function(data){return Promise.reject("Error parsing");});
+    }, function(response){return Promise.reject("Error retrieving");})*/
   }
 
   items() {
     return this.state.items.map(function(curval) {
-      return (<BlogItem key={curval.id} title={curval.title} \
-              content={curval.content} author={curval.author} />);
+      return (<BlogItem key={curval.id} item={item} sidebar={this} />);
     });
   }
   render() {
     return (
-      <ul>{this.items()}</ul>
+      <div>
+        {this.items()}
+      </div>
     );
   }
 }

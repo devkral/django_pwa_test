@@ -4,25 +4,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>test pwa</title>
+    <title>Test Blog PWA-based</title>
     {% progressive_web_app_meta %}
+    <link rel="stylesheet" type="text/css" href="{% static 'w3css/w3.css' %}" />
     <script src='{% url "pwa_batteries_helper" %}'></script>
     <script src='{% static "react/babel.min.js" %}'></script>
     <script src='{% static "react/react.development.js" %}'></script>
     <script src='{% static "react/react-dom.development.js" %}'></script>
     <script type="text/jsx" src='{% static "pwa_1/react.jsx" %}'></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'w3css/w3.css' %}" />
   </head>
   <body>
-    <div class="w3-row">
-      <div id="sidebar" class="w3-col s3 m2 l1">
-
-      </div>
-      <div id="maincontent" class="w3-col s9 m10 l11">
-      </div>
+    <div class="w3-container w3-green w3-center w3-card" style="z-index:3;">
+      <h1>Test Blog PWA-based</h1>
+      <button class="w3-button w3-xlarge w3-hide-large" style="left:0; top:0; position: absolute" id="sidebar-opener" onclick="sidebar_toggle()">&#9776;</button>
     </div>
+    <div id="sidebar" class="w3-sidebar w3-bar-block w3-collapse w3-card" style="width:200px"></div>
+    <div id="maincontent" class="w3-main" style="margin-left:220px; max-width:600px"></div>
 
     <script>
+      function sidebar_toggle() {
+        if (document.getElementById("sidebar").style.display != "block"){
+          document.getElementById("sidebar").style.display = "block";
+          document.getElementById("sidebar-opener").value = "Close &times;";
+        } else {
+          document.getElementById("sidebar").style.display = "none";
+          document.getElementById("sidebar-opener").value = "&#9776;";
+        }
+      }
       var onload=function(){
 
       }

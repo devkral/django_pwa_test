@@ -4,14 +4,17 @@ from django.conf import settings
 
 # Create your models here.
 
-class Blog(models.Model):
+class BlogPost(models.Model):
     title = models.CharField(max_length=40, unique=True)
-    text = models.TextField()
+    content = models.TextField()
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     @classmethod
     def process_pwa_query(cls, query, request):
-        return query
+        ret = []
+        for i in query:
+            ret.append({"id": i.id, "title": i.title, "content": i.content, "author": i.author.get_full_name()}) 
+        return ret
 
     @classmethod
     def update_pwa_request(cls, query, data, request, is_created):
