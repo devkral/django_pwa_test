@@ -13,7 +13,11 @@ class BlogPost(models.Model):
     def process_pwa_query(cls, query, request):
         ret = []
         for i in query:
-            ret.append({"id": i.id, "title": i.title, "content": i.content, "author": i.author.get_full_name()}) 
+            ret.append({"id": i.id,
+                        "title": i.title,
+                        "content": i.content,
+                        "author": i.author.get_full_name(),
+                        "author_email": i.author.email})
         return ret
 
     @classmethod

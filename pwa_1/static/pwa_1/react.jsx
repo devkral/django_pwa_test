@@ -6,24 +6,67 @@ class BlogContent extends React.Component {
     this.state = {
       id: -1,
       author: "",
+      author_email: "",
       title: "",
       content: "",
+      editlevel: 0
     };
   }
   update_s(item) {
     return this.setState({
       id: item.id,
       author: item.author,
+      author_email: item.author_email,
       title: item.title,
       content: item.content,
+      editlevel: 0
     })
   }
+
+  render_title_field(){
+    if (this.state.editlevel==0){
+      return (
+        <div>{this.state.title}</div>
+      )
+    } else {
+      return (
+        <input type="text" value={this.state.title}/>
+      )
+    }
+  }
+
+  render_content_field(){
+    if (this.state.editlevel==0){
+      return (
+        <div>{this.state.content}</div>
+      )
+    } else {
+      return (
+        <textarea defaultValue={this.state.content}/>
+      )
+    }
+  }
+
+  render_update_button(){
+    if (this.state.id==-1){
+      return ""
+    }
+    return (
+      <button>
+        update
+      </button>
+    )
+  }
+
   render() {
     return (
       <div>
-        <h1>{this.state.title}</h1>
-        <div>{this.state.content}</div>
-        <div>by: {this.state.author}</div>
+        <h1>{this.render_title_field()}</h1>
+        <div>{this.render_content_field()}</div>
+        <div>
+          <button>add</button>
+          <span>by: {this.state.author} </span>
+        </div>
       </div>
     );
   }
