@@ -57,6 +57,16 @@ class BlogContent extends React.Component {
       </button>
     )
   }
+  render_delete_button(){
+    if (this.state.id==-1){
+      return ""
+    }
+    return (
+      <button>
+        update
+      </button>
+    )
+  }
 
   render() {
     return (
@@ -64,7 +74,11 @@ class BlogContent extends React.Component {
         <h1>{this.render_title_field()}</h1>
         <div>{this.render_content_field()}</div>
         <div>
-          <button>add</button>
+          <div>
+            <button>+</button>
+            {this.render_update_button()}
+            {this.render_delete_button()}
+          </div>
           <span>by: {this.state.author} </span>
         </div>
       </div>
