@@ -1,16 +1,13 @@
-[[source]]
-
-url = 'https://pypi.python.org/simple'
-verify_ssl = true
-name = 'pypi'
-
-
-[requires]
-
-python_version = '3'
+[tool.poetry]
+name = "django_pwa_test"
+version = "0.1"
+license = "Public Domain"
+authors = []
+description = "django pwa test utility"
 
 
-[packages]
+[tool.poetry.dependencies]
+python = ">=3.5"
 
 django = ">=2"
 django-progressive-web-app = {git = "https://github.com/devkral/django-progressive-web-app.git", branch="django2_views"}
@@ -19,6 +16,11 @@ django-extensions = "*"
 werkzeug = "*"
 pyopenssl = "*"
 
-[dev-packages]
+[tool.poetry.dev-dependencies]
 
 pypandoc = "*"
+
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
