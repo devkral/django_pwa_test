@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-PWA_SERVICE_WORKER_PATH="pwa_batteries/serviceworker.js"
+PWA_SERVICE_WORKER_PATH = "pwa_batteries/serviceworker.js"
 
 ROOT_URLCONF = 'django_pwa_test.urls'
 

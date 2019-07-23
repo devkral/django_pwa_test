@@ -10,7 +10,7 @@ description = "django pwa test utility"
 python = ">=3.5"
 
 django = ">=2"
-django-progressive-web-app = {git = "https://github.com/devkral/django-progressive-web-app.git", branch="django2_views"}
+django-pwa = "*"
 django-pwa-batteries = {git = "https://github.com/devkral/django-pwa-batteries.git"}
 django-extensions = "*"
 werkzeug = "*"
